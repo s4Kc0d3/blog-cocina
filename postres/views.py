@@ -24,7 +24,7 @@ class PostresListado(ListView):
     model = Postres # Llamamos a la clase 'Postres' que se encuentra en nuestro archivo 'models.py'
 
 
-class PostresCrear(SuccessMessageMixin, CreateView):
+class PostreCrear(SuccessMessageMixin, CreateView):
     model = Postres # Llamamos a la clase 'Postres' que se encuentra en nuestro archivo 'models.py'
     form = Postres # Definimos nuestro formulario con el nombre de la clase o modelo 'Postres'
     fields = "__all__" # Le decimos a Django que muestre todos los campos de la tabla 'postres' de nuestra Base de Datos 

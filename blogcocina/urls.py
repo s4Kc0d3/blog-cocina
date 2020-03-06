@@ -15,7 +15,29 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-
+#from django.views.generic import TemplateView
+from postres.views import PostresListado, PostreDetalle, PostreCrear, PostreActualizar, PostreEliminar
+#from . import views
+ 
+#from postres.views import PostresList
+ 
+from django.conf import settings
+from django.conf.urls.static import static 
 urlpatterns = [
     path('admin/', admin.site.urls),
+
+    # La ruta 'leer' en donde listamos todos los registros o postres de la Base de Datos
+    path('postres/', PostresListado.as_view(template_name = "postres/index.html"), name='leer'),
+ 
+    # La ruta 'detalles' en donde mostraremos una página con los detalles de un postre o registro 
+    path('postres/detalle/<int:pk>', PostreDetalle.as_view(template_name = "postres/detalles.html"), name='detalles'),
+ 
+    # La ruta 'crear' en donde mostraremos un formulario para crear un nuevo postre o registro  
+    path('postres/crear', PostreCrear.as_view(template_name = "postres/crear.html"), name='crear'),
+ 
+    # La ruta 'actualizar' en donde mostraremos un formulario para actualizar un postre o registro de la Base de Datos 
+    path('postres/editar/<int:pk>', PostreActualizar.as_view(template_name = "postres/actualizar.html"), name='actualizar'), 
+ 
+    # La ruta 'eliminar' que usaremos para eliminar un postre o registro de la Base de Datos 
+    path('postres/eliminar/<int:pk>', PostreEliminar.as_view(), name='eliminar'),    
 ]

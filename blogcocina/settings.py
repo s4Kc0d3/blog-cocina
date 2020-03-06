@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'postres',
+    'blog',
     #'clear_cache',
     'bootstrap4',
     'widget_tweaks',

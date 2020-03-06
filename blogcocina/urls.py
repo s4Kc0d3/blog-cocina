@@ -14,7 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 #from django.views.generic import TemplateView
 from postres.views import PostresListado, PostreDetalle, PostreCrear, PostreActualizar, PostreEliminar
 #from . import views
@@ -26,7 +26,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-
+    path('', include('blog.urls')),
     # La ruta 'leer' en donde listamos todos los registros o postres de la Base de Datos
     path('postres/', PostresListado.as_view(template_name = "postres/index.html"), name='leer'),
  

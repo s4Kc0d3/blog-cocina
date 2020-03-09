@@ -20,5 +20,10 @@ def post_new(request):
             return redirect('index')
     else:
         form = PostForm()
-
     return render(request, 'blog/post_new.html', {'form': form})
+
+
+def delete_post(request, post_id=None):
+    post_to_delete=Post.objects.get(id=post_id)
+    post_to_delete.delete()
+    return redirect('index')

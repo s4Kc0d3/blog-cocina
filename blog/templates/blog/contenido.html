@@ -9,6 +9,9 @@
             <h3>Publicado: {{post.published_date }} </h3>
             <p class="card-text">{{ post.text|linebreaksbr}}</p>
             <p class="card-text"><small class="text-muted">Creado: {{ post.created_date }}</small></p>
+            {% if user.is_staff %}
+                <a class="btn btn-danger" href="{% url 'delete_post' post.id %}"> Delete </a>
+            {% endif%}
         </div>
     {% endfor %}
 </div>

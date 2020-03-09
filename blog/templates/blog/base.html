@@ -1,0 +1,25 @@
+{% load static %}
+<html>
+    <head>
+    
+        <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+        <title>Blog de cocina</title>
+        {# Cargamos la librería #}
+	    {% load bootstrap4 %}
+	    {# CSS Bootstrap #}
+	    {% bootstrap_css %}
+        <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+
+    </head>
+    <body>
+
+        {# Cabecera #}
+        {% include "blog\cabecera.html" %}
+        {# Menú #}
+        {% include "blog\menu.html" %}
+
+        {% block content %}
+        {% endblock %}
+
+    </body>
+</html>

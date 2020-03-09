@@ -1,24 +1,7 @@
-{% load static %}
-<html>
-    <head>
+{% extends "blog\base.html" %}
+
+{% block content %}
     
-        <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-        <title>Blog de cocina</title>
-        {# Cargamos la librería #}
-	    {% load bootstrap4 %}
-	    {# CSS Bootstrap #}
-	    {% bootstrap_css %}
-        <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+    {% include "blog\contenido.html "%}
 
-    </head>
-    <body>
-
-        {# Cabecera #}
-        {% include "blog\cabecera.html" %}
-        {# Menú #}
-        {% include "blog\menu.html" %}
-        {# Contenido #}
-        {% include "blog\contenido.html "%}
-
-    </body>
-</html>
+{% endblock %}

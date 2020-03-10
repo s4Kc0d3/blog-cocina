@@ -11,6 +11,7 @@
             <p class="card-text"><small class="text-muted">Creado: {{ post.created_date }}</small></p>
             {% if user.is_staff %}
                 <a class="btn btn-danger" href="{% url 'delete_post' post.id %}"> Delete </a>
+                <a class="btn btn-success" href="{% url 'edit_post' post.id %}"> Edit </a>
             {% endif%}
         </div>
     {% endfor %}

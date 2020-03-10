@@ -29,12 +29,16 @@ def delete_post(request, post_id=None):
     return redirect('index')
 
 
-def edit_post(request, post_Id=None):
-    instance = Post.objects.get(id=post_id)
-    form = PostForm(request.POST, instance=instance)
-    
-    if form.is_valid():
-        instance = form.save(commit=False)
-        instance.save()
-
-    return render(request, "blog/edit_post.html", {'form': form})
+def edit_post(request, post_id=None):
+    post = Post.objects.get(id=post_id)
+    if request.method == "POST":
+        form = PostForm(request.POST, instance=post)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.author = request.user
+            post.published_date = timezone.now()
+            post.save()
+            return redirect('post_detail', pk=post.pk)
+    else:
+        form = PostForm(instance=post)
+    return render(request, 'blog/edit_post.html', {'form': form})

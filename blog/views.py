@@ -24,6 +24,17 @@ def post_new(request):
 
 
 def delete_post(request, post_id=None):
-    post_to_delete=Post.objects.get(id=post_id)
+    post_to_delete = Post.objects.get(id=post_id)
     post_to_delete.delete()
     return redirect('index')
+
+
+def edit_post(request, post_Id=None):
+    instance = Post.objects.get(id=post_id)
+    form = PostForm(request.POST, instance=instance)
+    
+    if form.is_valid():
+        instance = form.save(commit=False)
+        instance.save()
+
+    return render(request, "blog/edit_post.html", {'form': form})

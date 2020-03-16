@@ -39,10 +39,21 @@ def edit_post(request, post_id=None):
             post.author = request.user
             post.published_date = timezone.now()
             post.save()
-            return redirect('index') #, pk=post.pk)
+            return redirect('contenido_id', post_id=post.id)
+            #return redirect('index') #, pk=post.pk)
     else:
         form = PostForm(instance=post)
         return render(request, 'blog/edit_post.html', {'form': form})
+
+
+def contenido_id(request, post_id):
+    print(f'post_id: {post_id}')
+    post = Post.objects.get(id=post_id)
+    if post:
+        return render(request, 'blog/post_detail.html', {'post_id': post})
+        #return HttpResponse(post)
+    else:
+        return HttpResponse("No hay datos modificados")
 
 
 def busqueda_productos(request):

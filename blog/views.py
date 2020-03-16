@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.utils import timezone
+from django.http import HttpResponse
 from .models import Post
 from .forms import PostForm
 
@@ -42,3 +43,15 @@ def edit_post(request, post_id=None):
     else:
         form = PostForm(instance=post)
     return render(request, 'blog/edit_post.html', {'form': form})
+
+
+def busqueda_productos(request):
+
+    return render(request, "blog/buscar.html")
+
+
+def buscar(request):
+
+    mensaje = f"Artículo buscado: {request.GET['prd']}"
+
+    return HttpResponse(mensaje)

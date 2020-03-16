@@ -47,7 +47,6 @@ def edit_post(request, post_id=None):
 
 
 def contenido_id(request, post_id):
-    print(f'post_id: {post_id}')
     post = Post.objects.get(id=post_id)
     if post:
         return render(request, 'blog/post_detail.html', {'post_id': post})

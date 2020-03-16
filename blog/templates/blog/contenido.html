@@ -1,20 +1,23 @@
 {% load static %}
 
 {% block content %}
-<div class="card mb-3">
-    {% for post in posts %}
-        <br>
-        <img width="300" height="200" src="{% static "img/pollo-guisado-con-verduras-receta.jpg" %}" class="ounded float-left" alt="...">
-        <div class="card-body">
-            <h5 class="card-title">{{ post.title }}</h5>
-            <h3>Publicado: {{post.published_date }} </h3>
-            <p class="card-text">{{ post.text|linebreaksbr}}</p>
-            <p class="card-text"><small class="text-muted">Creado: {{ post.created_date }}</small></p>
-            {% if user.is_staff %}
-                <a class="btn btn-danger" href="{% url 'delete_post' post.id %}"> Delete </a>
-                <a class="btn btn-success" href="{% url 'edit_post' post.id %}"> Edit </a>
-            {% endif%}
-        </div>
-    {% endfor %}
-</div>
+
+{% if user.is_authenticated %}
+    <div class="card mb-3">
+        {% for post in posts %}
+            <br>
+            <img width="300" height="200" src="{% static "img/pollo-guisado-con-verduras-receta.jpg" %}" class="ounded float-left" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">{{ post.title }}</h5>
+                <h3>Publicado: {{post.published_date }} </h3>
+                <p class="card-text">{{ post.text|linebreaksbr}}</p>
+                <p class="card-text"><small class="text-muted">Creado: {{ post.created_date }}</small></p>
+                {% if user.is_staff %}
+                    <a class="btn btn-danger" href="{% url 'delete_post' post.id %}"> Delete </a>
+                    <a class="btn btn-success" href="{% url 'edit_post' post.id %}"> Edit </a>
+                {% endif%}
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}
 {% endblock %}

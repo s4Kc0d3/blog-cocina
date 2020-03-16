@@ -9,4 +9,7 @@ urlpatterns = [
     path('busqueda_productos/', views.busqueda_productos),
     path('contenido/<post_id>', views.contenido_id, name='contenido_id'),
     path('buscar/', views.buscar),
+    path('register/', views.register),
+    path('login/', views.login),
+    path('logout/', views.logout),
 ]

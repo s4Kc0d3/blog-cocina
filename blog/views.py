@@ -56,12 +56,25 @@ def contenido_id(request, post_id):
 
 
 def busqueda_productos(request):
-
     return render(request, "blog/buscar.html")
 
 
 def buscar(request):
-
     mensaje = f"Artículo buscado: {request.GET['prd']}"
-
     return HttpResponse(mensaje)
+
+
+# CREO LAS FUNCIONES DE CONTROL DE USUARIOS
+
+def welcome(request):
+    return render(request, "users/welcome.html")
+
+def register(request):
+    return render(request, "users/register.html")
+
+def login(request):
+    return render(request, "users/login.html")
+
+def logout(request):
+    # Redireccionamos a la portada
+    return redirect('/')

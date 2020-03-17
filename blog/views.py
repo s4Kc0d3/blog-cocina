@@ -56,7 +56,6 @@ def contenido_id(request, post_id):
     post = Post.objects.get(id=post_id)
     if post:
         return render(request, 'blog/post_detail.html', {'post_id': post})
-        #return HttpResponse(post)
     else:
         return HttpResponse("No hay datos modificados")
 
@@ -66,8 +65,14 @@ def busqueda_productos(request):
 
 
 def buscar(request):
-    mensaje = f"Artículo buscado: {request.GET['prd']}"
-    return HttpResponse(mensaje)
+    product = request.GET['prd']
+    if product:
+        #mensaje = f"Artículo buscado: {request.GET['prd']}"
+        listado = Post.objects.filter(title__contains=product)
+        if listado:
+            return render(request, "blog/resultados_busqueda.html", {"listado": listado, "query": product})
+
+    return HttpResponse(f"No se a encontrado: {product}")
 
 '''
 Descripcion:

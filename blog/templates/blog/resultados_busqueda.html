@@ -1,0 +1,17 @@
+{% extends "blog\base.html" %}
+{% load static %}
+{% block content %}
+    <div class="card mb-3">
+        {% for list in listado %}
+            <br>
+            <img width="300" height="200" src="{% static "img/pollo-guisado-con-verduras-receta.jpg" %}" class="ounded float-left" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">{{ list.title }}</h5>
+                <h3>Publicado: {{list.published_date }} </h3>
+                <p class="card-text">{{ list.text|linebreaksbr}}</p>
+                <p class="card-text"><small class="text-muted">Creado: {{ list.created_date }}</small></p>
+                <a class="btn btn-primary" href="{% url 'index' %}"> Volver </a>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

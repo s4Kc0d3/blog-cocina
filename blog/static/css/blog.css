@@ -52,3 +52,14 @@ h1, h2, h3, h4 {
 .post h2 a, .post h2 a:visited {
     color: #000000;
 }
+
+.contenido {
+    width:80%;
+    height:200px;
+    background-color:orange;
+    color:white;
+    font-size:24pt;
+    overflow:hidden;
+    white-space:nowrap;
+    text-overflow: ellipsis;
+}
